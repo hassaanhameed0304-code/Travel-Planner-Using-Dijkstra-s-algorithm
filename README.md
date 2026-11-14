@@ -224,17 +224,3 @@ Both members should describe only the work they actually completed. The website 
 - Add a map-based interface as a separate visualization layer.
 - Include travel-time estimates when reliable traffic data is available.
 
-## 🔗 Reference and Inspiration
-
-**Live project website:** [Karachi Travel Planner](https://route-khi-karachi-travel-planner.ai.studio)
-
-This project was inspired by the concept of the Bhubaneswar Travel Planner:
-
-- [GitHub repository – Ritwika101/travel-planner-bbsr](https://github.com/Ritwika101/travel-planner-bbsr)
-- [Published project website](https://ritwika101.github.io/travel-planner-bbsr/)
-
-The current project adapts the travel-planning concept to selected Karachi destinations and implements the DSA solution in C++.
-
----
-
-**Karachi Smart Travel Planner — DSA Semester Project**
