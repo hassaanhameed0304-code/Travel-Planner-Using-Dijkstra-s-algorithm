@@ -1,87 +1,77 @@
-# Karachi Route Finder — Smart Travel Planner
+# 🧭 Karachi Smart Travel Planner
 
-A responsive website for the Karachi version of the C++ DSA Travel Planner. It follows the core idea of the Bhubaneswar reference project: select a start and destination, calculate the shortest path through a weighted graph, and visualize the chosen route.
+A C++17 Data Structures and Algorithms (DSA) project that recommends the shortest route between selected tourist destinations in Karachi. The project models locations and road connections as a weighted, undirected graph and uses Dijkstra's shortest-path algorithm with a priority queue.
 
-## Features
+## 🌐 Live Website
 
-- 11 Karachi landmarks and 24 undirected sample road links.
-- Choose a starting location and destination, or swap them.
-- Shortest route calculated with modified Dijkstra's algorithm.
-- Equal-distance routes prefer fewer road segments.
-- Clear distance, intermediate-stop, and road-segment summaries.
-- Step-by-step route with the distance of each selected road segment.
-- Interactive SVG graph; the recommended path is highlighted.
-- Responsive layout for desktop, tablet, and mobile.
-- Light and dark themes with a navigation-bar toggle; the selected theme is saved in the browser.
-- C++ routing engine can be compiled to WebAssembly and run in the browser.
-- JavaScript preview engine is included, so the website remains usable before the WebAssembly build is created.
+Explore the project website here:
 
-## Change the website theme
+**[Karachi Travel Planner — Live Demo](https://route-khi-karachi-travel-planner.ai.studio)**
 
-Use the **Dark mode / Light mode** button in the top navigation bar. The selected theme is saved in your browser, so it remains selected when you revisit the site on the same browser.
+The website is a companion demonstration of how the travel-planning idea can be presented through a browser interface. The main DSA semester-project implementation and the members' coding contributions are in the C++ source code described in this README. The website is supplementary and is not counted as a separate member contribution.
 
-## Update the website
+> **Project scope:** This is an educational DSA demonstration. The attraction names are real Karachi landmarks, but the road connections and distances in the program are illustrative sample data. They are not verified navigation distances, live traffic information, or turn-by-turn directions.
 
-### Update it on your computer
+## ✨ Features
 
-1. Open the `Karachi_Travel_Planner_Web` folder in VS Code.
-2. Edit the file you want to change (`index.html` for page content, `styles.css` for design and colors, or `app.js` / `route-engine.js` for interactions and route data).
-3. Press `Ctrl + S` to save.
-4. If Live Server is running, the browser refreshes automatically. If it does not, refresh the browser with `Ctrl + R`.
+- 📍 Lists 11 popular tourist destinations in Karachi.
+- 🛣️ Displays the direct road connections represented in the graph.
+- 🎯 Lets the user choose a starting point and destination.
+- 🧭 Finds the shortest route using Dijkstra's algorithm.
+- 🚦 Uses a priority queue to process the next best candidate.
+- ⚖️ If routes have equal total distance, prefers the route with fewer road segments.
+- 🗺️ Reconstructs and displays the recommended route in travel order.
+- 📏 Shows the total distance, intermediate stops, road segments, and distance for each segment.
+- 💻 Uses only five standard C++ headers.
 
-### Update the online GitHub Pages website
+## 📍 Tourist Destinations
 
-1. Open the project folder in VS Code and make your changes.
-2. Save the files.
-3. Open the Source Control panel in VS Code, stage the changed files, enter a message such as `Add dark and light themes`, and commit.
-4. Push/sync the commit to the GitHub repository's `main` branch.
-5. Open the repository's **Actions** tab and wait for the deployment workflow to finish. The published website will then show the update. If the old version remains visible, hard-refresh with `Ctrl + Shift + R`.
+The program includes these 11 locations:
 
-## Important distance note
+1. 🏛️ Mazar-e-Quaid
+2. 🛍️ Empress Market
+3. 🏛️ Frere Hall
+4. 🏺 National Museum of Pakistan
+5. 🏠 Quaid-e-Azam House Museum
+6. ⚓ Pakistan Maritime Museum
+7. ✈️ PAF Museum
+8. 🕌 Mohatta Palace Museum
+9. 🕌 Abdullah Shah Ghazi Shrine
+10. 🌊 Clifton Beach (Sea View)
+11. 🌆 Port Grand
 
-The Karachi attraction names are real landmarks, but the 24 graph weights are illustrative sample values used for the DSA demonstration. They are not verified road measurements, live navigation directions, traffic-aware travel times, or guaranteed real-world shortest routes. The graph visualization is schematic, not a geographic street map.
+## 🧠 DSA Concepts Used
 
-## Project structure
+| Concept | How it is used |
+|---|---|
+| 🕸️ Weighted Graph | Represents tourist locations and road distances. |
+| ↔️ Undirected Graph | Each listed road connection can be travelled in both directions. |
+| 📋 Adjacency List | Stores the neighbouring locations and the distance to each neighbour. |
+| 🧭 Dijkstra's Algorithm | Finds a route with the minimum total distance. |
+| 🚦 Priority Queue | Selects the candidate state with the smallest distance first. |
+| ⚖️ Custom Comparator | Orders states by distance, then by number of road segments, then by location index. |
+| 🌳 Parent Array | Stores the previous location so the final route can be reconstructed. |
+| 🔒 Singleton Design Pattern | Provides one shared `TravelPlanner` instance. |
 
-```text
-Karachi_Travel_Planner_Web/
-├── index.html
-├── styles.css
-├── app.js
-├── route-engine.js
-├── favicon.svg
-├── build.sh
-├── cpp/
-│   ├── travel_planner.cpp
-│   └── web_bridge.cpp
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-└── README.md
-```
+### 🛣️ Shortest-Route Selection
 
-## Run the website locally
+The program first minimizes the **total route distance**. When two candidate routes have effectively equal distances, it prefers the route with **fewer road segments**.
 
-You can preview the website without installing Python or Emscripten by using VS Code Live Server:
+The priority-queue state contains:
 
-1. Open this project folder in VS Code.
-2. Install the **Live Server** extension by Ritwick Dey if it is not already installed.
-3. Open `index.html`, right-click inside the editor, and select **Open with Live Server**.
-4. Your browser opens the local website, usually at `http://127.0.0.1:5500`.
+- `distance` — total distance travelled so far.
+- `hops` — number of road segments used.
+- `node` — current location index.
 
-Alternatively, if Python is installed, run this from the project folder:
+## 🛠️ Technologies and Requirements
 
-```bash
-python -m http.server 8000
-```
+- **Language:** C++
+- **C++ standard:** C++17
+- **Compiler:** GCC / MinGW g++, or another C++17-compatible compiler
+- **C++ program interface:** Console-based menu
+- **Companion demonstration:** [Live Karachi Travel Planner website](https://route-khi-karachi-travel-planner.ai.studio)
 
-Then open `http://localhost:8000`.
-
-The website will automatically use the JavaScript preview engine if the WebAssembly build files are not present.
-
-## Run the original C++ console project
-
-The console version uses only the five requested headers:
+The source code uses only these headers:
 
 ```cpp
 #include <algorithm>
@@ -91,68 +81,160 @@ The console version uses only the five requested headers:
 #include <queue>
 ```
 
-Compile it from this folder with:
+## 🚀 Getting Started
+
+### 1. 📥 Clone the Repository
+
+Replace `YOUR-USERNAME` with your GitHub username:
 
 ```bash
-g++ -std=c++17 -Wall -Wextra -pedantic cpp/travel_planner.cpp -o karachi_travel_planner
+git clone https://github.com/YOUR-USERNAME/karachi-smart-travel-planner.git
 ```
 
-Run on Windows:
+### 2. 📂 Open the Project Folder
 
-```text
-karachi_travel_planner.exe
+```bash
+cd karachi-smart-travel-planner
 ```
 
-Run on Linux/macOS:
+### 3. ⚙️ Compile the Program
+
+**Windows (MinGW):**
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic travel_planner.cpp -o karachi_travel_planner.exe
+```
+
+**Linux / macOS:**
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic travel_planner.cpp -o karachi_travel_planner
+```
+
+### 4. ▶️ Run the Program
+
+**Windows:**
+
+```bash
+.\karachi_travel_planner.exe
+```
+
+**Linux / macOS:**
 
 ```bash
 ./karachi_travel_planner
 ```
 
-## Build the C++ engine for the website (WebAssembly)
+## 🎮 How to Use
 
-The browser bridge calls the same `TravelPlanner` C++ class and the same modified Dijkstra algorithm as the console application. To compile it to WebAssembly:
-
-1. Install the [Emscripten SDK](https://emscripten.org/docs/getting_started/downloads.html).
-2. Activate the SDK environment in your terminal.
-3. From this project folder, run:
-
-```bash
-./build.sh
-```
-
-This creates:
+When the program starts, it displays this menu:
 
 ```text
-travel_planner.js
-travel_planner.wasm
+KARACHI SMART TRAVEL PLANNER
+
+1. View all tourist locations
+2. View all direct routes
+3. Find the shortest route between two locations
+4. Exit
 ```
 
-Reload the website through the local server. The status indicator will show **C++ WebAssembly engine** when the C++ module loads successfully. If those files are absent, the site uses the matching JavaScript preview implementation.
+Choose an option by entering its number.
 
-## Publish with GitHub Pages
+To find a route:
 
-The included GitHub Actions workflow builds the C++ WebAssembly module and deploys the website automatically whenever you push to the `main` branch.
+1. Select option `3`.
+2. Choose a starting location from the numbered list.
+3. Choose your destination.
+4. The program calculates and displays the shortest route.
 
-1. Create a new public GitHub repository, for example `karachi-travel-planner`.
-2. Upload the contents of this project folder to the repository root.
-3. Push the files to the `main` branch.
-4. Open **Settings → Pages** and set the source to **GitHub Actions** if GitHub has not selected it automatically.
-5. Open the **Actions** tab and wait for “Build and deploy Karachi Travel Planner” to finish.
-6. Your site will be published at a URL similar to:
+The result includes:
+
+- Starting location and destination
+- Total shortest distance
+- Number of intermediate stops
+- Number of road segments
+- Ordered route with `[START]`, `[STOP]`, and `[DESTINATION]` labels
+- Distance for every road segment
+
+## 🖥️ Example Output
+
+The following is an example using the program's sample graph:
 
 ```text
-https://YOUR-USERNAME.github.io/karachi-travel-planner/
+START       : Mazar-e-Quaid
+DESTINATION : Clifton Beach (Sea View)
+TOTAL SHORTEST DISTANCE: 14.6 km
+INTERMEDIATE STOPS     : 2
+ROAD SEGMENTS          : 3
+
+RECOMMENDED SHORTEST ROUTE (in travel order):
+1. 🏛️ Mazar-e-Quaid [START]
+2. Quaid-e-Azam House Museum [STOP]
+3. Mohatta Palace Museum [STOP]
+4. Clifton Beach (Sea View) [DESTINATION]
+
+STEP-BY-STEP DISTANCE BREAKDOWN:
+1. 🏛️ Mazar-e-Quaid -> Quaid-e-Azam House Museum = 3.4 km
+2. Quaid-e-Azam House Museum -> Mohatta Palace Museum = 7.0 km
+3. Mohatta Palace Museum -> Clifton Beach (Sea View) = 4.2 km
+
+TOTAL DISTANCE: 14.6 km
 ```
 
-## DSA concepts demonstrated
+*The distances above are illustrative sample values from the project's graph.*
 
-- **Graph:** each landmark is a vertex; each road link is a weighted edge.
-- **Adjacency List:** stores each location's connected neighbours and distances.
-- **Priority Queue / Min-Heap:** chooses the next state with the smallest distance.
-- **Modified Dijkstra:** minimizes total distance, then number of road segments.
-- **Parent Array:** reconstructs the final route in travel order.
-- **Singleton Pattern:** the C++ planner uses one shared `TravelPlanner` instance.
+## ⏱️ Algorithm and Complexity
 
-Time complexity of the modified Dijkstra implementation with a binary heap is approximately `O((V + E) log V)`; route reconstruction takes `O(V)`.
+Let:
 
+- `V` = number of vertices (tourist locations)
+- `E` = number of edges (road connections)
+
+With an adjacency list and a binary-heap priority queue, the expected time complexity of Dijkstra's algorithm is:
+
+**Time complexity:** `O((V + E) log V)`
+
+**Space complexity:** `O(V + E)` for the graph and algorithm data structures.
+
+Route reconstruction by following the parent links takes `O(V)` time in the worst case.
+
+## 👥 Team Contributions
+
+Update the placeholders below with the actual names and student IDs before submitting the repository.
+
+| Member | Contribution |
+|---|---|
+| **Member 1 – [Name, Student ID]** | Implementation of Dijkstra's shortest-path algorithm. |
+| **Member 2 – [Name, Student ID]** | Priority queue implementation and its custom state comparator for processing candidate routes. |
+
+Both members should describe only the work they actually completed. The website is a demonstration of how the project could be presented; it is not included as an individual coding contribution. Add any other shared or individually completed C++ tasks here if applicable.
+
+## ⚠️ Limitations
+
+- The graph contains a selected set of 11 Karachi attractions, not every location in the city.
+- Road distances are sample values for demonstrating graph algorithms.
+- The program does not use GPS, live maps, traffic data, or real-time road conditions.
+- A mathematically shortest path in this sample graph may not be the shortest real-world driving route.
+
+## 🔮 Possible Future Improvements
+
+- Replace sample distances with verified road-network distances.
+- Add more Karachi destinations and road connections.
+- Import location and route data from an external file.
+- Add a map-based interface as a separate visualization layer.
+- Include travel-time estimates when reliable traffic data is available.
+
+## 🔗 Reference and Inspiration
+
+**Live project website:** [Karachi Travel Planner](https://route-khi-karachi-travel-planner.ai.studio)
+
+This project was inspired by the concept of the Bhubaneswar Travel Planner:
+
+- [GitHub repository – Ritwika101/travel-planner-bbsr](https://github.com/Ritwika101/travel-planner-bbsr)
+- [Published project website](https://ritwika101.github.io/travel-planner-bbsr/)
+
+The current project adapts the travel-planning concept to selected Karachi destinations and implements the DSA solution in C++.
+
+---
+
+**Karachi Smart Travel Planner — DSA Semester Project**
