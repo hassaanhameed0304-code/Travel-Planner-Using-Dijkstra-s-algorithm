@@ -200,14 +200,10 @@ Route reconstruction by following the parent links takes `O(V)` time in the wors
 
 ## 👥 Team Contributions
 
-Update the placeholders below with the actual names and student IDs before submitting the repository.
-
 | Member | Contribution |
 |---|---|
 | **Member 1 – [Hassaan, CT-25097]** | Implementation of Dijkstra's shortest-path algorithm. |
 | **Member 2 – [Abdullah, CT-25076]** | Priority queue implementation and its custom state comparator for processing candidate routes. |
-
-Both members should describe only the work they actually completed. The website is a demonstration of how the project could be presented; it is not included as an individual coding contribution. Add any other shared or individually completed C++ tasks here if applicable.
 
 ## ⚠️ Limitations
 
