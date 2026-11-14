@@ -156,6 +156,3 @@ https://YOUR-USERNAME.github.io/karachi-travel-planner/
 
 Time complexity of the modified Dijkstra implementation with a binary heap is approximately `O((V + E) log V)`; route reconstruction takes `O(V)`.
 
-## Reference
-
-The project is inspired by the structure and algorithmic idea described in [Ritwika101's Bhubaneswar Travel Planner](https://github.com/Ritwika101/travel-planner-bbsr) and its [published project page](https://ritwika101.github.io/travel-planner-bbsr/). The Karachi location data and website interface have been adapted for this project.
