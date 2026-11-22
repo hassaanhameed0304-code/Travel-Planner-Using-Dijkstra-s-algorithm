@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="./assets/Live.png"
+       width="100%"
+       alt="Karachi Travel Planner">
+</p>
+
 # 🧭 Karachi Smart Travel Planner
 
 A C++17 Data Structures and Algorithms (DSA) project that recommends the
